@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Satyam Diagnostic Lab</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f4f8ff;
+color:#1c2b4a;
+}
+
+html{scroll-behavior:smooth;}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:linear-gradient(90deg,#0b6cff,#00bfa6);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 8%;
+z-index:1000;
+box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+
+.logo{
+color:white;
+font-weight:700;
+font-size:20px;
+}
+
+nav a{
+color:white;
+margin-left:22px;
+text-decoration:none;
+font-weight:500;
+}
+
+nav a:hover{
+opacity:0.8;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:linear-gradient(120deg,#0b6cff,#00bfa6);
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:48px;
+}
+
+.hero p{
+margin-top:10px;
+}
+
+.hero a{
+margin-top:25px;
+background:white;
+color:#0b6cff;
+padding:14px 30px;
+border-radius:30px;
+text-decoration:none;
+font-weight:600;
+}
+
+/* SECTION */
+
+section{
+padding:120px 8%;
+text-align:center;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+padding:30px;
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.stat{
+font-size:40px;
+color:#0b6cff;
+font-weight:700;
+}
+
+/* FORM */
+
+.form{
+max-width:420px;
+margin:auto;
+text-align:left;
+}
+
+.form input,
+.form select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.form button{
+margin-top:15px;
+width:100%;
+padding:14px;
+background:#0b6cff;
+color:white;
+border:none;
+border-radius:25px;
+cursor:pointer;
+}
+
+/* REVIEWS */
+
+.review{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* CHAT */
+
+.chatbtn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0b6cff;
+color:white;
+padding:16px;
+border-radius:50%;
+cursor:pointer;
+font-size:20px;
+}
+
+.chatbox{
+position:fixed;
+bottom:90px;
+right:20px;
+width:260px;
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.2);
+display:none;
+}
+
+.chatbox input{
+width:100%;
+padding:8px;
+margin-top:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.chatbox button{
+margin-top:8px;
+padding:8px 12px;
+background:#0b6cff;
+color:white;
+border:none;
+border-radius:6px;
+}
+
+iframe{
+border-radius:12px;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">Satyam Diagnostic Lab</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#tests">Tests</a>
+<a href="#booking">Book</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>Accurate Diagnostic Testing</h1>
+
+<p>Serving Hamirpur Since 2015</p>
+
+<a href="#booking">Book Test</a>
+
+</section>
+
+<!-- STATS -->
+
+<section>
+
+<h2>Our Experience</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="stat">10+</div>
+Years Experience
+</div>
+
+<div class="card">
+<div class="stat">10000+</div>
+Patients Tested
+</div>
+
+<div class="card">
+<div class="stat">50+</div>
+Tests Available
+</div>
+
+</div>
+
+</section>
+
+<!-- TESTS -->
+
+<section id="tests">
+
+<h2>Popular Tests</h2>
+
+<div class="grid">
+
+<div class="card">CBC — ₹250</div>
+<div class="card">Blood Sugar — ₹50</div>
+<div class="card">Lipid Profile — ₹400</div>
+<div class="card">Thyroid Profile — ₹400</div>
+<div class="card">Vitamin D — ₹1000</div>
+
+</div>
+
+</section>
+
+<!-- BOOKING -->
+
+<section id="booking">
+
+<h2>Book Your Test</h2>
+
+<div class="form">
+
+<input id="name" placeholder="Your Name">
+
+<input id="phone" placeholder="Mobile Number">
+
+<select id="test">
+
+<option>CBC</option>
+<option>Blood Sugar</option>
+<option>Lipid Profile</option>
+<option>Thyroid Profile</option>
+<option>Vitamin D</option>
+
+</select>
+
+<button onclick="sendWhatsApp()">Send Booking on WhatsApp</button>
+
+</div>
+
+</section>
+
+<!-- PRESCRIPTION -->
+
+<section>
+
+<h2>Upload Doctor Prescription</h2>
+
+<div class="form">
+
+<input id="pname" placeholder="Your Name">
+
+<input type="file" id="prescription">
+
+<button onclick="sendPrescription()">Send Prescription</button>
+
+</div>
+
+</section>
+
+<!-- LAB TIMING -->
+
+<section>
+
+<h2>Lab Timings</h2>
+
+<div class="grid">
+
+<div class="card">Monday – Saturday<br><b>8:00 AM – 7:00 PM</b></div>
+
+<div class="card">Sunday<br><b>9:00 AM – 2:00 PM</b></div>
+
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section id="reviews">
+
+<h2>Patient Reviews</h2>
+
+<div class="grid">
+
+<div class="review">
+⭐⭐⭐⭐⭐  
+<p>Very fast reports and friendly staff.</p>
+<b>Rahul Sharma</b>
+</div>
+
+<div class="review">
+⭐⭐⭐⭐⭐  
+<p>Best diagnostic lab in Hamirpur.</p>
+<b>Anita Verma</b>
+</div>
+
+<div class="review">
+⭐⭐⭐⭐⭐  
+<p>Affordable tests and accurate results.</p>
+<b>Manoj Kumar</b>
+</div>
+
+</div>
+
+</section>
+
+<!-- MAP -->
+
+<section>
+
+<h2>Find Us</h2>
+
+<iframe
+width="100%"
+height="300"
+src="https://maps.google.com/maps?q=RKGMC%20Hospital%20Hamirpur%20Himachal%20Pradesh&t=&z=15&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<p>Phone: 9816735272</p>
+
+<p>Opposite RKGMC Hospital, Hamirpur</p>
+
+</section>
+
+<!-- CHATBOT -->
+
+<div class="chatbtn" onclick="toggleChat()">💬</div>
+
+<div class="chatbox" id="chat">
+
+<b>Lab Assistant</b>
+
+<input id="user" placeholder="Ask something">
+
+<button onclick="reply()">Send</button>
+
+<p id="bot"></p>
+
+</div>
+
+<script>
+
+function sendWhatsApp(){
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let test=document.getElementById("test").value;
+
+let msg=`Hello Satyam Diagnostic Lab
+Name: ${name}
+Mobile: ${phone}
+Test: ${test}`;
+
+let url="https://wa.me/919816735272?text="+encodeURIComponent(msg);
+
+window.open(url,'_blank');
+
+}
+
+function sendPrescription(){
+
+let name=document.getElementById("pname").value;
+let file=document.getElementById("prescription").files[0];
+
+let msg=`Hello Satyam Diagnostic Lab
+Prescription Upload
+
+Name: ${name}
+File: ${file ? file.name : "No file selected"}
+
+Please review my prescription.`;
+
+let url="https://wa.me/919816735272?text="+encodeURIComponent(msg);
+
+window.open(url,'_blank');
+
+}
+
+function toggleChat(){
+
+let c=document.getElementById("chat");
+
+c.style.display=c.style.display=="block"?"none":"block";
+
+}
+
+function reply(){
+
+let msg=document.getElementById("user").value.toLowerCase();
+
+let r="Please contact us on WhatsApp.";
+
+if(msg.includes("price"))
+r="CBC ₹250, Sugar ₹50.";
+
+if(msg.includes("report"))
+r="Reports ready within 24 hours.";
+
+if(msg.includes("location"))
+r="Opposite RKGMC Hospital, Hamirpur.";
+
+if(msg.includes("timing"))
+r="Mon-Sat 8AM–7PM, Sunday 9AM–2PM.";
+
+document.getElementById("bot").innerText=r;
+
+}
+
+</script>
+
+</body>
+</html>
