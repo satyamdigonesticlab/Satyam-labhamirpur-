@@ -1,487 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satyam Diagnostic Lab | Precision in Every Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0052cc;
+            --secondary: #00bfa6;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        * { margin:0; padding:0; box-sizing:border-box; outline: none; }
+        body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.6; }
+        html { scroll-behavior: smooth; }
 
-<title>Satyam Diagnostic Lab</title>
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 8%; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .logo { color: var(--primary); font-weight: 700; font-size: 22px; letter-spacing: -1px; }
+        nav a { color: var(--dark); margin-left: 20px; text-decoration: none; font-weight: 500; font-size: 14px; transition: 0.3s; }
+        nav a:hover { color: var(--primary); }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        /* HERO */
+        .hero {
+            height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; background: radial-gradient(circle at top right, #eef2ff, #ffffff);
+            padding: 0 5%;
+        }
+        .hero h1 { font-size: 52px; color: var(--dark); margin-bottom: 15px; line-height: 1.1; }
+        .hero p { font-size: 18px; color: #4a5568; margin-bottom: 30px; }
+        .hero .btn-main {
+            background: var(--primary); color: white; padding: 16px 35px;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            box-shadow: 0 4px 14px 0 rgba(0,82,204,0.39); transition: 0.3s;
+        }
+        .hero .btn-main:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,82,204,0.23); }
 
-<style>
+        /* SECTIONS */
+        section { padding: 80px 8%; }
+        h2 { font-size: 32px; margin-bottom: 40px; position: relative; display: inline-block; }
+        h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 50px; height: 4px; background: var(--secondary); border-radius: 2px; }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
+        
+        .card { 
+            background: white; padding: 35px; border-radius: 20px; 
+            box-shadow: var(--shadow); transition: 0.3s; border: 1px solid #edf2f7;
+        }
+        .card:hover { transform: translateY(-10px); }
+        .stat { font-size: 45px; font-weight: 800; color: var(--primary); margin-bottom: 5px; }
 
-body{
-font-family:'Poppins',sans-serif;
-background:#f4f8ff;
-color:#1c2b4a;
-}
+        /* PRICE CARDS */
+        .price-card { background: white; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--secondary); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .price-card b { color: var(--primary); font-size: 18px; }
 
-html{scroll-behavior:smooth;}
+        /* FORMS */
+        .form-container { max-width: 500px; margin: auto; background: white; padding: 40px; border-radius: 24px; box-shadow: var(--shadow); }
+        .form-container input, .form-container select { 
+            width: 100%; padding: 14px; margin-top: 15px; border-radius: 12px; 
+            border: 1px solid #e2e8f0; background: #f8fafc; font-size: 15px;
+        }
+        .form-container button { 
+            margin-top: 25px; width: 100%; padding: 16px; background: var(--primary); 
+            color: white; border: none; border-radius: 14px; cursor: pointer; font-weight: 600; font-size: 16px;
+        }
 
-/* HEADER */
+        /* CHATBOT */
+        .chatbtn { position: fixed; bottom: 85px; right: 25px; background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 999; }
+        .chatbox { position: fixed; bottom: 160px; right: 25px; width: 320px; background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: none; overflow: hidden; z-index: 1000; }
+        .chat-header { background: var(--primary); color: white; padding: 15px; font-weight: 600; display: flex; justify-content: space-between; }
+        .chat-content { height: 300px; padding: 15px; overflow-y: auto; background: #f7fafc; font-size: 14px; }
+        .chat-input { display: flex; border-top: 1px solid #eee; }
+        .chat-input input { flex: 1; padding: 15px; border: none; }
+        .chat-input button { padding: 15px; background: white; border: none; color: var(--primary); cursor: pointer; font-weight: 700; }
 
-header{
-position:fixed;
-top:0;
-width:100%;
-background:linear-gradient(90deg,#0b6cff,#00bfa6);
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 8%;
-z-index:1000;
-box-shadow:0 6px 20px rgba(0,0,0,0.2);
-}
+        /* MOBILE ACTION BAR */
+        .mobile-actions { position: fixed; bottom: 0; width: 100%; background: white; display: none; grid-template-columns: 1fr 1fr; gap: 1px; border-top: 1px solid #eee; z-index: 1001; }
+        .mobile-actions a { padding: 18px; text-align: center; text-decoration: none; font-weight: 700; font-size: 14px; }
+        .call-btn { background: white; color: var(--primary); }
+        .wa-btn { background: #25D366; color: white; }
 
-.logo{
-color:white;
-font-weight:700;
-font-size:20px;
-}
-
-nav a{
-color:white;
-margin-left:22px;
-text-decoration:none;
-font-weight:500;
-}
-
-nav a:hover{
-opacity:0.8;
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:linear-gradient(120deg,#0b6cff,#00bfa6);
-color:white;
-padding:20px;
-}
-
-.hero h1{
-font-size:48px;
-}
-
-.hero p{
-margin-top:10px;
-}
-
-.hero a{
-margin-top:25px;
-background:white;
-color:#0b6cff;
-padding:14px 30px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-}
-
-/* SECTION */
-
-section{
-padding:120px 8%;
-text-align:center;
-}
-
-/* GRID */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:25px;
-margin-top:40px;
-}
-
-/* CARD */
-
-.card{
-background:white;
-padding:30px;
-border-radius:16px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.stat{
-font-size:40px;
-color:#0b6cff;
-font-weight:700;
-}
-
-/* FORM */
-
-.form{
-max-width:420px;
-margin:auto;
-text-align:left;
-}
-
-.form input,
-.form select{
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-.form button{
-margin-top:15px;
-width:100%;
-padding:14px;
-background:#0b6cff;
-color:white;
-border:none;
-border-radius:25px;
-cursor:pointer;
-}
-
-/* REVIEWS */
-
-.review{
-background:white;
-padding:25px;
-border-radius:14px;
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
-}
-
-/* CHAT */
-
-.chatbtn{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#0b6cff;
-color:white;
-padding:16px;
-border-radius:50%;
-cursor:pointer;
-font-size:20px;
-}
-
-.chatbox{
-position:fixed;
-bottom:90px;
-right:20px;
-width:260px;
-background:white;
-padding:15px;
-border-radius:12px;
-box-shadow:0 8px 25px rgba(0,0,0,0.2);
-display:none;
-}
-
-.chatbox input{
-width:100%;
-padding:8px;
-margin-top:8px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-.chatbox button{
-margin-top:8px;
-padding:8px 12px;
-background:#0b6cff;
-color:white;
-border:none;
-border-radius:6px;
-}
-
-iframe{
-border-radius:12px;
-margin-top:20px;
-}
-
-</style>
-
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hero h1 { font-size: 36px; }
+            .mobile-actions { display: grid; }
+            section { padding: 60px 5%; }
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
-
-<div class="logo">Satyam Diagnostic Lab</div>
-
-<nav>
-<a href="#">Home</a>
-<a href="#tests">Tests</a>
-<a href="#booking">Book</a>
-<a href="#reviews">Reviews</a>
-<a href="#contact">Contact</a>
-</nav>
-
+    <div class="logo">SATYAM LAB</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#tests">Tests</a>
+        <a href="#booking">Book Now</a>
+        <a href="#contact">Contact</a>
+    </nav>
 </header>
 
-<!-- HERO -->
-
 <section class="hero">
-
-<h1>Accurate Diagnostic Testing</h1>
-
-<p>Serving Hamirpur Since 2015</p>
-
-<a href="#booking">Book Test</a>
-
+    <h1>Quality Healthcare <br><span style="color:var(--primary)">You Can Trust.</span></h1>
+    <p>Advanced Diagnostic Center in Hamirpur with 10+ Years of Excellence.</p>
+    <a href="#booking" class="btn-main">Book Appointment</a>
 </section>
 
-<!-- STATS -->
-
-<section>
-
-<h2>Our Experience</h2>
-
-<div class="grid">
-
-<div class="card">
-<div class="stat">10+</div>
-Years Experience
-</div>
-
-<div class="card">
-<div class="stat">10000+</div>
-Patients Tested
-</div>
-
-<div class="card">
-<div class="stat">50+</div>
-Tests Available
-</div>
-
-</div>
-
+<section id="stats">
+    <div class="grid">
+        <div class="card"><div class="stat">10+</div><p>Years of Trust</p></div>
+        <div class="card"><div class="stat">10k+</div><p>Happy Patients</p></div>
+        <div class="card"><div class="stat">24h</div><p>Report Delivery</p></div>
+    </div>
 </section>
 
-<!-- TESTS -->
-
-<section id="tests">
-
-<h2>Popular Tests</h2>
-
-<div class="grid">
-
-<div class="card">CBC — ₹250</div>
-<div class="card">Blood Sugar — ₹50</div>
-<div class="card">Lipid Profile — ₹400</div>
-<div class="card">Thyroid Profile — ₹400</div>
-<div class="card">Vitamin D — ₹1000</div>
-
-</div>
-
+<section id="tests" style="background: #fff;">
+    <h2>Popular Test Packages</h2>
+    <div class="grid">
+        <div class="price-card"><span>Complete Blood Count (CBC)</span><b>₹250</b></div>
+        <div class="price-card"><span>Thyroid Profile (T3,T4,TSH)</span><b>₹400</b></div>
+        <div class="price-card"><span>Lipid Profile</span><b>₹450</b></div>
+        <div class="price-card"><span>Diabetes Screening</span><b>₹50</b></div>
+        <div class="price-card"><span>Vitamin D3</span><b>₹1000</b></div>
+        <div class="price-card"><span>Liver Function Test</span><b>₹500</b></div>
+    </div>
 </section>
-
-<!-- BOOKING -->
 
 <section id="booking">
-
-<h2>Book Your Test</h2>
-
-<div class="form">
-
-<input id="name" placeholder="Your Name">
-
-<input id="phone" placeholder="Mobile Number">
-
-<select id="test">
-
-<option>CBC</option>
-<option>Blood Sugar</option>
-<option>Lipid Profile</option>
-<option>Thyroid Profile</option>
-<option>Vitamin D</option>
-
-</select>
-
-<button onclick="sendWhatsApp()">Send Booking on WhatsApp</button>
-
-</div>
-
+    <div class="form-container">
+        <h3 style="margin-bottom:20px; text-align:center">Instant Booking</h3>
+        <input id="name" type="text" placeholder="Full Name">
+        <input id="phone" type="tel" placeholder="Phone Number">
+        <select id="test">
+            <option value="" disabled selected>Select a Test</option>
+            <option>CBC</option>
+            <option>Blood Sugar</option>
+            <option>Thyroid Profile</option>
+            <option>Full Body Checkup</option>
+        </select>
+        <button onclick="sendWhatsApp()">Confirm via WhatsApp</button>
+    </div>
 </section>
 
-<!-- PRESCRIPTION -->
-
-<section>
-
-<h2>Upload Doctor Prescription</h2>
-
-<div class="form">
-
-<input id="pname" placeholder="Your Name">
-
-<input type="file" id="prescription">
-
-<button onclick="sendPrescription()">Send Prescription</button>
-
-</div>
-
+<section id="contact" style="background: var(--dark); color: white;">
+    <h2>Get In Touch</h2>
+    <p>📞 +91 98167 35272</p>
+    <p>📍 Opposite RKGMC Hospital, Hamirpur, HP</p>
+    <div style="margin-top: 30px; border-radius: 20px; overflow: hidden; opacity: 0.8;">
+        <iframe width="100%" height="250" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.2!2d76.5!3d31.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDM2JzAwLjAiTiA3NsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000"></iframe>
+    </div>
 </section>
-
-<!-- LAB TIMING -->
-
-<section>
-
-<h2>Lab Timings</h2>
-
-<div class="grid">
-
-<div class="card">Monday – Saturday<br><b>8:00 AM – 7:00 PM</b></div>
-
-<div class="card">Sunday<br><b>9:00 AM – 2:00 PM</b></div>
-
-</div>
-
-</section>
-
-<!-- REVIEWS -->
-
-<section id="reviews">
-
-<h2>Patient Reviews</h2>
-
-<div class="grid">
-
-<div class="review">
-⭐⭐⭐⭐⭐  
-<p>Very fast reports and friendly staff.</p>
-<b>Rahul Sharma</b>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐  
-<p>Best diagnostic lab in Hamirpur.</p>
-<b>Anita Verma</b>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐  
-<p>Affordable tests and accurate results.</p>
-<b>Manoj Kumar</b>
-</div>
-
-</div>
-
-</section>
-
-<!-- MAP -->
-
-<section>
-
-<h2>Find Us</h2>
-
-<iframe
-width="100%"
-height="300"
-src="https://maps.google.com/maps?q=RKGMC%20Hospital%20Hamirpur%20Himachal%20Pradesh&t=&z=15&ie=UTF8&iwloc=&output=embed">
-</iframe>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-<h2>Contact</h2>
-
-<p>Phone: 9816735272</p>
-
-<p>Opposite RKGMC Hospital, Hamirpur</p>
-
-</section>
-
-<!-- CHATBOT -->
 
 <div class="chatbtn" onclick="toggleChat()">💬</div>
-
 <div class="chatbox" id="chat">
+    <div class="chat-header"><span>Lab Assistant</span> <span onclick="toggleChat()" style="cursor:pointer">&times;</span></div>
+    <div class="chat-content" id="chat-res">
+        <div style="background:#e2e8f0; padding:10px; border-radius:10px; margin-bottom:10px;">Hello! How can I help you today?</div>
+    </div>
+    <div class="chat-input">
+        <input id="user-msg" placeholder="Type 'price' or 'timing'...">
+        <button onclick="botReply()">Send</button>
+    </div>
+</div>
 
-<b>Lab Assistant</b>
-
-<input id="user" placeholder="Ask something">
-
-<button onclick="reply()">Send</button>
-
-<p id="bot"></p>
-
+<div class="mobile-actions">
+    <a href="tel:+919816735272" class="call-btn">CALL LAB</a>
+    <a href="https://wa.me/919816735272" class="wa-btn">WHATSAPP</a>
 </div>
 
 <script>
+    function sendWhatsApp() {
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const test = document.getElementById("test").value;
 
-function sendWhatsApp(){
+        if(!name || !phone) {
+            alert("Please fill in your details.");
+            return;
+        }
 
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let test=document.getElementById("test").value;
+        const msg = `*Booking Request*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Test:* ${test}`;
+        window.open(`https://wa.me/919816735272?text=${msg}`, '_blank');
+    }
 
-let msg=`Hello Satyam Diagnostic Lab
-Name: ${name}
-Mobile: ${phone}
-Test: ${test}`;
+    function toggleChat() {
+        const c = document.getElementById("chat");
+        c.style.display = (c.style.display === "block") ? "none" : "block";
+    }
 
-let url="https://wa.me/919816735272?text="+encodeURIComponent(msg);
+    function botReply() {
+        const input = document.getElementById("user-msg");
+        const resBox = document.getElementById("chat-res");
+        const msg = input.value.toLowerCase();
+        if(!msg) return;
 
-window.open(url,'_blank');
+        // User message
+        resBox.innerHTML += `<div style="text-align:right; margin-bottom:10px;"><span style="background:var(--primary); color:white; padding:8px 12px; border-radius:10px;">${input.value}</span></div>`;
+        
+        let reply = "I'm sorry, I didn't catch that. Please call us at 9816735272.";
+        if(msg.includes("price") || msg.includes("cost")) reply = "Our tests start at ₹50 (Sugar). CBC is ₹250.";
+        if(msg.includes("time") || msg.includes("open")) reply = "We are open Mon-Sat (8AM-7PM) and Sun (9AM-2PM).";
+        if(msg.includes("home")) reply = "Yes, we offer home collection in Hamirpur city!";
 
-}
-
-function sendPrescription(){
-
-let name=document.getElementById("pname").value;
-let file=document.getElementById("prescription").files[0];
-
-let msg=`Hello Satyam Diagnostic Lab
-Prescription Upload
-
-Name: ${name}
-File: ${file ? file.name : "No file selected"}
-
-Please review my prescription.`;
-
-let url="https://wa.me/919816735272?text="+encodeURIComponent(msg);
-
-window.open(url,'_blank');
-
-}
-
-function toggleChat(){
-
-let c=document.getElementById("chat");
-
-c.style.display=c.style.display=="block"?"none":"block";
-
-}
-
-function reply(){
-
-let msg=document.getElementById("user").value.toLowerCase();
-
-let r="Please contact us on WhatsApp.";
-
-if(msg.includes("price"))
-r="CBC ₹250, Sugar ₹50.";
-
-if(msg.includes("report"))
-r="Reports ready within 24 hours.";
-
-if(msg.includes("location"))
-r="Opposite RKGMC Hospital, Hamirpur.";
-
-if(msg.includes("timing"))
-r="Mon-Sat 8AM–7PM, Sunday 9AM–2PM.";
-
-document.getElementById("bot").innerText=r;
-
-}
-
+        setTimeout(() => {
+            resBox.innerHTML += `<div style="background:#e2e8f0; padding:10px; border-radius:10px; margin-bottom:10px;">${reply}</div>`;
+            resBox.scrollTop = resBox.scrollHeight;
+        }, 600);
+        
+        input.value = "";
+    }
 </script>
 
 </body>
-</html>
+  </html>
+          
