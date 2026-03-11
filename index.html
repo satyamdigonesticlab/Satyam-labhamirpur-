@@ -3,272 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satyam Diagnostic Lab | Premium Healthcare Hamirpur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Satyam Diagnostic Lab | Precision. Period.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #2563eb;
-            --accent-soft: #dbeafe;
-            --success: #10b981;
-            --bg: #f8fafc;
-            --glass: rgba(255, 255, 255, 0.8);
-            --border: rgba(226, 232, 240, 0.8);
+            --apple-black: #1d1d1f;
+            --apple-gray: #f5f5f7;
+            --apple-blue: #0066cc;
+            --glass: rgba(255, 255, 255, 0.72);
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; outline: none; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #1e293b; overflow-x: hidden; }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #fff; color: var(--apple-black); line-height: 1.5; overflow-x: hidden; }
         html { scroll-behavior: smooth; }
 
-        /* ANIMATIONS */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .reveal { animation: fadeIn 0.8s ease forwards; opacity: 0; }
-
-        /* NAVIGATION */
+        /* APPLE-STYLE NAV */
         header {
-            position: fixed; top: 0; width: 100%; padding: 20px 8%;
-            background: var(--glass); backdrop-filter: blur(12px);
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 2000; border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; width: 100%; height: 44px;
+            background: var(--glass); backdrop-filter: saturate(180%) blur(20px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; border-bottom: 1px solid rgba(0,0,0,0.1);
         }
-        .logo-box { display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 35px; height: 35px; background: var(--accent); border-radius: 8px; display: grid; place-items: center; color: white; font-weight: 800; }
-        .logo-text { font-weight: 800; font-size: 20px; color: var(--accent); letter-spacing: -0.5px; }
+        nav a { color: var(--apple-black); text-decoration: none; font-size: 12px; margin: 0 20px; opacity: 0.8; transition: 0.3s; font-weight: 400; }
+        nav a:hover { opacity: 1; }
 
-        /* HERO SECTION */
+        /* HERO SECTION - BIG & BOLD */
         .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: space-between;
-            padding: 100px 8% 50px; background: radial-gradient(circle at 90% 10%, #dbeafe 0%, transparent 40%);
+            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding-top: 44px; background: #fff;
         }
-        .hero-content { max-width: 600px; }
-        .hero-content h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin-bottom: 25px; }
-        .badge { background: var(--accent-soft); color: var(--accent); padding: 8px 16px; border-radius: 100px; font-size: 14px; font-weight: 700; margin-bottom: 20px; display: inline-block; }
+        .hero h1 { font-size: clamp(48px, 8vw, 80px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+        .hero p { font-size: 24px; font-weight: 500; margin-top: 10px; color: #86868b; }
+        .hero-links { margin-top: 25px; display: flex; gap: 30px; }
+        .hero-links a { color: var(--apple-blue); text-decoration: none; font-size: 19px; font-weight: 400; }
+        .hero-links a:hover { text-decoration: underline; }
+
+        /* BENTO GRID SECTION */
+        .section-padding { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
         
-        /* BMI CALCULATOR WIDGET */
-        .bmi-widget {
-            background: white; padding: 30px; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            width: 350px; border: 1px solid var(--border);
+        .bento-card {
+            background: var(--apple-gray); border-radius: 28px; padding: 40px;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+            overflow: hidden; min-height: 400px;
         }
-        .bmi-widget h4 { margin-bottom: 15px; color: var(--accent); }
-        .bmi-input { display: flex; gap: 10px; margin-bottom: 15px; }
-        .bmi-input input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #eee; }
+        .bento-card:hover { transform: scale(1.01); }
+        .card-large { grid-column: span 8; }
+        .card-small { grid-column: span 4; }
+        .card-full { grid-column: span 12; }
+
+        .bento-card h3 { font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
+        .bento-card p { font-size: 17px; color: #6e6e73; margin-top: 10px; }
+
+        /* SMOOTH FORM */
+        .apple-form {
+            max-width: 600px; margin: 0 auto; background: var(--apple-gray);
+            padding: 50px; border-radius: 30px;
+        }
+        .apple-form input, .apple-form select {
+            width: 100%; border: none; background: #fff; padding: 18px;
+            border-radius: 12px; margin-bottom: 15px; font-size: 16px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+        }
+        .apple-form button {
+            width: 100%; background: var(--apple-blue); color: #fff; border: none;
+            padding: 18px; border-radius: 12px; font-size: 17px; font-weight: 600;
+            cursor: pointer; transition: 0.3s;
+        }
+        .apple-form button:hover { background: #0077ed; }
+
+        /* SCROLL REVEAL ANIMATION */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* FOOTER */
+        footer { background: var(--apple-gray); padding: 60px 5%; font-size: 12px; color: #6e6e73; text-align: center; }
         
-        /* SERVICES & PRICING */
-        section { padding: 100px 8%; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 36px; margin-bottom: 10px; }
-
-        .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .test-card {
-            background: white; padding: 25px; border-radius: 20px; border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
-        }
-        .test-card:hover { transform: scale(1.03); border-color: var(--accent); box-shadow: 0 15px 30px rgba(37,99,235,0.1); }
-        .test-card .price { font-size: 24px; font-weight: 800; color: var(--accent); display: block; margin-top: 15px; }
-        .test-card .tag { position: absolute; top: 15px; right: 15px; font-size: 10px; background: #f1f5f9; padding: 4px 8px; border-radius: 4px; }
-
-        /* PROCESS SECTION */
-        .process-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 50px; }
-        .step { text-align: center; position: relative; }
-        .step-num { width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 50%; display: grid; place-items: center; font-weight: 700; margin: 0 auto 20px; border: 5px solid var(--accent-soft); }
-
-        /* MODERN FORM */
-        .booking-container {
-            display: grid; grid-template-columns: 1fr 1fr; background: white; border-radius: 30px;
-            overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-        }
-        .form-info { background: var(--accent); color: white; padding: 60px; }
-        .form-area { padding: 60px; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
-        .form-group input, .form-group select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; font-family: inherit; }
-
-        /* BUTTONS */
-        .btn { padding: 15px 30px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; border: none; font-family: inherit; }
-        .btn-accent { background: var(--accent); color: white; width: 100%; }
-        .btn-accent:hover { background: #1d4ed8; transform: translateY(-2px); }
-
-        /* CHATBOT MINI */
-        .chat-trigger { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: var(--accent); border-radius: 20px; display: grid; place-items: center; color: white; font-size: 24px; cursor: pointer; z-index: 1000; box-shadow: 0 10px 20px rgba(37,99,235,0.4); }
-
-        @media (max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .hero-content { margin-bottom: 50px; }
-            .booking-container { grid-template-columns: 1fr; }
-            .form-info { padding: 40px; }
-            header nav { display: none; }
+        @media (max-width: 768px) {
+            .card-large, .card-small { grid-column: span 12; }
+            .hero h1 { font-size: 42px; }
+            nav { display: none; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-box">
-        <div class="logo-icon">S</div>
-        <div class="logo-text">SATYAM DIAGNOSTICS</div>
-    </div>
     <nav>
-        <a href="#tests" style="text-decoration:none; color:inherit; margin-left:25px; font-weight:600;">Packages</a>
-        <a href="#booking" style="text-decoration:none; color:inherit; margin-left:25px; font-weight:600;">Home Collection</a>
-        <a href="#contact" style="text-decoration:none; color:var(--accent); margin-left:25px; font-weight:800;">Call Us</a>
+        <a href="#">Satyam Lab</a>
+        <a href="#tests">Tests</a>
+        <a href="#booking">Book</a>
+        <a href="#contact">Contact</a>
     </nav>
 </header>
 
 <section class="hero">
-    <div class="hero-content reveal" style="animation-delay: 0.2s;">
-        <span class="badge">✨ NABL Standards Lab</span>
-        <h1>Accurate Results. <br><span style="color:var(--accent)">Healthy Life.</span></h1>
-        <p>Advanced pathology services in Hamirpur. Get your reports online within 24 hours with 100% precision guarantee.</p>
-        <div style="display:flex; gap:15px; margin-top:30px;">
-            <button class="btn btn-accent" style="width:auto;" onclick="location.href='#booking'">Book Now</button>
-            <button class="btn" style="background:white; border:1px solid var(--border); width:auto;" onclick="location.href='#tests'">View Tests</button>
-        </div>
-    </div>
-    
-    <div class="bmi-widget reveal" style="animation-delay: 0.4s;">
-        <h4>Check Your Health</h4>
-        <p style="font-size:12px; color:#64748b; margin-bottom:15px;">Quick BMI Calculator</p>
-        <div class="bmi-input">
-            <input type="number" id="h" placeholder="Height (cm)">
-            <input type="number" id="w" placeholder="Weight (kg)">
-        </div>
-        <button class="btn btn-accent" onclick="calcBMI()">Calculate</button>
-        <div id="bmi-res" style="margin-top:15px; font-weight:800; text-align:center; color:var(--accent)"></div>
+    <h1 class="reveal">Accurate. <br><span style="color:var(--apple-blue)">Wonderfully simple.</span></h1>
+    <p class="reveal">Advanced Diagnostics for a Healthier Hamirpur.</p>
+    <div class="hero-links reveal">
+        <a href="#booking">Book a test ></a>
+        <a href="#tests">View pricing ></a>
     </div>
 </section>
 
-<section id="process">
-    <div class="section-title">
-        <h2>How it works</h2>
-        <p>Simple 4-step process for your peace of mind</p>
-    </div>
-    
-    <div class="process-flow">
-        <div class="step">
-            <div class="step-num">1</div>
-            <h4>Book Test</h4>
-            <p style="font-size:14px; color:#64748b;">Schedule online or via WhatsApp</p>
+<section class="section-padding">
+    <div class="bento-grid">
+        <div class="bento-card card-large reveal" style="background: #000; color: #fff;">
+            <h3>NABL Grade Precision.</h3>
+            <p>Our lab uses the same standards as the world's leading medical institutions.</p>
+            
         </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <h4>Sample Collection</h4>
-            <p style="font-size:14px; color:#64748b;">Visit lab or opt for Home Collection</p>
+        <div class="bento-card card-small reveal">
+            <h3>24h</h3>
+            <p>The speed of your recovery matters. Reports delivered in a day.</p>
         </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <h4>Lab Analysis</h4>
-            <p style="font-size:14px; color:#64748b;">Expert testing on automated machines</p>
-        </div>
-        <div class="step">
-            <div class="step-num">4</div>
-            <h4>Digital Report</h4>
-            <p style="font-size:14px; color:#64748b;">Receive PDF report on your phone</p>
-        </div>
-    </div>
-</section>
-
-<section id="tests" style="background:#fff;">
-    <div class="section-title">
-        <h2>Popular Diagnostics</h2>
-        <p>Transparent pricing, no hidden costs</p>
-    </div>
-    <div class="price-grid">
-        <div class="test-card">
-            <span class="tag">Most Popular</span>
-            <h3>Full Body Checkup</h3>
-            <p style="font-size:13px; margin-top:10px;">60+ Parameters included</p>
-            <span class="price">₹1,499</span>
-        </div>
-        <div class="test-card">
-            <h3>Vitamin D + B12</h3>
-            <p style="font-size:13px; margin-top:10px;">Bone & Nerve health</p>
-            <span class="price">₹1,200</span>
-        </div>
-        <div class="test-card">
-            <h3>Diabetes Panel</h3>
-            <p style="font-size:13px; margin-top:10px;">HbA1c + Fasting Sugar</p>
-            <span class="price">₹450</span>
-        </div>
-        <div class="test-card">
-            <h3>Heart Health</h3>
-            <p style="font-size:13px; margin-top:10px;">Lipid Profile + ECG</p>
-            <span class="price">₹800</span>
-        </div>
-    </div>
-</section>
-
-<section id="booking">
-    <div class="booking-container">
-        <div class="form-info">
-            <h2>Book Home Collection</h2>
-            <p style="margin: 20px 0;">Don't want to step out? We'll come to you. Our certified phlebotomists ensure a painless collection process.</p>
-            <ul style="list-style:none; font-size:14px;">
-                <li style="margin-bottom:10px;">✅ Safe & Sterile Equipment</li>
-                <li style="margin-bottom:10px;">✅ Timely Sample Pick-up</li>
-                <li style="margin-bottom:10px;">✅ Free Report Consultation</li>
-            </ul>
-        </div>
-        <div class="form-area">
-            <div class="form-group">
-                <label>Patient Name</label>
-                <input type="text" id="name" placeholder="Enter full name">
+        <div class="bento-card card-full reveal" style="background: linear-gradient(to right, #eef2ff, #fff);">
+            <div style="max-width: 500px;">
+                <h3>Home Collection.</h3>
+                <p>A certified professional at your doorstep. Safe, sterile, and professional.</p>
             </div>
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" id="phone" placeholder="Enter 10 digit number">
-            </div>
-            <div class="form-group">
-                <label>Select Package</label>
-                <select id="test">
-                    <option>Full Body Checkup</option>
-                    <option>CBC / Blood Sugar</option>
-                    <option>Thyroid Profile</option>
-                    <option>Others</option>
-                </select>
-            </div>
-            <button class="btn btn-accent" onclick="bookWhatsApp()">Book via WhatsApp</button>
         </div>
     </div>
 </section>
 
-<footer style="background:var(--accent); color:white; padding:60px 8%; text-align:center;">
-    <h2 style="color:white; margin-bottom:20px;">Satyam Diagnostic Lab</h2>
-    <p>Opposite RKGMC Hospital, Hamirpur, Himachal Pradesh</p>
-    <p style="margin-top:10px; opacity:0.8;">Open 7 Days a Week | Ph: 9816735272</p>
+<section id="booking" class="section-padding">
+    <div class="reveal" style="text-align: center; margin-bottom: 50px;">
+        <h2 style="font-size: 40px; font-weight: 700;">Ready to start?</h2>
+        <p style="color: #6e6e73;">Fill in the details and we'll handle the rest.</p>
+    </div>
+    <div class="apple-form reveal">
+        <input type="text" id="name" placeholder="Full Name">
+        <input type="tel" id="phone" placeholder="Phone Number">
+        <select id="test">
+            <option>Full Body Checkup</option>
+            <option>Thyroid Profile</option>
+            <option>Diabetes Screening</option>
+        </select>
+        <button onclick="sendWhatsApp()">Confirm with WhatsApp</button>
+    </div>
+</section>
+
+<footer class="reveal">
+    <div style="max-width: 1000px; margin: 0 auto; border-bottom: 1px solid #d2d2d7; padding-bottom: 20px; margin-bottom: 20px;">
+        Satyam Diagnostic Lab Hamirpur. Serving the community since 2015.
+    </div>
+    <p>© 2026 Satyam Diagnostics. All rights reserved.</p>
 </footer>
 
-<div class="chat-trigger" onclick="window.open('https://wa.me/919816735272')">💬</div>
-
 <script>
-    // Reveal animations on scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) entry.target.classList.add('reveal');
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('section, .test-card').forEach(el => observer.observe(el));
-
-    function calcBMI() {
-        const h = document.getElementById('h').value / 100;
-        const w = document.getElementById('w').value;
-        if(h && w) {
-            const bmi = (w / (h * h)).toFixed(1);
-            let cat = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal" : "Overweight";
-            document.getElementById('bmi-res').innerText = `BMI: ${bmi} (${cat})`;
+    // Scroll Reveal Script
+    window.addEventListener('scroll', reveal);
+    function reveal() {
+        var reveals = document.querySelectorAll('.reveal');
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var revealTop = reveals[i].getBoundingClientRect().top;
+            var revealPoint = 150;
+            if (revealTop < windowHeight - revealPoint) {
+                reveals[i].classList.add('active');
+            }
         }
     }
+    // Run on load to show hero
+    window.onload = reveal;
 
-    function bookWhatsApp() {
+    function sendWhatsApp() {
         const name = document.getElementById('name').value;
         const phone = document.getElementById('phone').value;
         const test = document.getElementById('test').value;
-        if(!name || !phone) return alert("Please fill details");
+        if(!name || !phone) return alert("Please fill in your details.");
         
-        const text = `*NEW BOOKING REQUEST*%0A*Patient:* ${name}%0A*Phone:* ${phone}%0A*Package:* ${test}`;
+        const text = `*Booking Request*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Test:* ${test}`;
         window.open(`https://wa.me/919816735272?text=${text}`);
     }
 </script>
 
 </body>
-</html>
+            </html>
+    
